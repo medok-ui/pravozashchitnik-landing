@@ -35,5 +35,3 @@ lawyer-WEB/
 ├── index.html      # Главная страница
 └── README.md
 ```
-
----
