@@ -1,0 +1,167 @@
+@use "functions" as func;
+@use "variables" as *;
+@use "mixins" as *;
+
+body,
+html {
+  font-family: "Nunito Sans", sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding-top: func.calcRem(80px);
+}
+
+.container {
+  width: 100%;
+  max-width: func.calcRem(1350px);
+  margin: 0 auto;
+  padding: 0 func.calcRem(15px);
+}
+
+.header__container {
+  &--menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.logo {
+  font: {
+    weight: 900;
+    size: func.calcRem(28px);
+  }
+
+  line-height: 150%;
+  text-transform: uppercase;
+  color: $accent;
+
+  span {
+    display: block;
+    position: relative;
+    top: func.calcRem(-10px);
+    font: {
+      weight: 900;
+      size: func.calcRem(20px);
+    }
+    line-height: 150%;
+    text-transform: lowercase;
+    color: $white;
+  }
+
+  @include laptop {
+    font-size: func.calcRem(22px);
+    span {
+      font-size: func.calcRem(16px);
+    }
+  }
+  @include mobile-sm {
+    font-size: func.calcRem(20px);
+    span {
+      font-size: func.calcRem(14px);
+    }
+  }
+}
+
+.btn {
+  padding: func.calcRem(16px) func.calcRem(24px);
+  font: {
+    weight: 900;
+    size: func.calcRem(16px);
+  }
+  line-height: 120%;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in-out;
+
+  &--primary {
+    border: 2px solid $accent;
+    color: $white;
+    background-color: $accent;
+  }
+
+  &--secondary {
+    border: 2px solid $gray-light;
+    color: $dark;
+    background-color: $gray-light;
+  }
+
+  &:hover {
+    border-color: $accent;
+    background-color: $white;
+    color: $accent;
+  }
+
+  &:active {
+    border-color: $gray-light;
+    color: $dark;
+  }
+}
+.section {
+  padding: func.calcRem(80px) 0;
+  @include laptop {
+    padding: func.calcRem(60px) 0;
+  }
+  @include mobile {
+    padding: func.calcRem(40px) 0;
+  }
+
+  &__header {
+    @include flex-center;
+    gap: func.calcRem(34px);
+    flex-direction: column;
+    text-align: center;
+
+    color: $dark;
+
+    &--left {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    @include mobile {
+      gap: func.calcRem(26px);
+    }
+  }
+
+  &__title--line {
+    font: {
+      weight: 800;
+      size: func.calcRem(28px);
+    }
+    line-height: 150%;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      display: block;
+      position: relative;
+      top: func.calcRem(10px);
+
+      margin: 0 auto; // надеюсь это не плохо
+
+      width: func.calcRem(50px);
+      height: func.calcRem(3px);
+      background: $accent;
+    }
+
+    @include laptop {
+      font-size: func.calcRem(24px);
+    }
+    @include mobile {
+      font-size: func.calcRem(20px);
+    }
+  }
+
+  &__description {
+    font: {
+      weight: 400;
+      size: func.calcRem(16px);
+    }
+    line-height: 120%;
+    margin-bottom: func.calcRem(48px);
+
+    @include mobile {
+      font-size: func.calcRem(14px);
+      margin-bottom: func.calcRem(24px);
+    }
+  }
+}

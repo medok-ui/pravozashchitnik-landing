@@ -1,0 +1,1240 @@
+@use "reset";
+@use "variables" as *;
+@use "layout";
+@use "functions" as func;
+@use "mixins" as *;
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+  height: auto;
+
+  // header-top links
+
+  &__top {
+    background: $black;
+    padding: func.calcRem(16px) 0 func.calcRem(16px) 0;
+  }
+
+  &__container {
+    @include flex-center;
+    justify-content: space-between;
+  }
+
+  &__contacts-list {
+    @include flex-center;
+    gap: func.calcRem(24px);
+  }
+
+  &__contact-link {
+    @include flex-center;
+
+    gap: func.calcRem(8px);
+    font: {
+      weight: 600;
+      size: func.calcRem(14px);
+    }
+    line-height: 120%;
+    color: $white;
+
+    @include mobile-sm {
+      font-size: func.calcRem(12px);
+    }
+  }
+
+  &__contact-email {
+    @include mobile-sm {
+      display: none;
+    }
+  }
+
+  &__link {
+    font: {
+      weight: 700;
+      size: func.calcRem(14px);
+    }
+    line-height: 150%;
+    color: $accent;
+
+    @include mobile-sm {
+      font-size: func.calcRem(12px);
+    }
+  }
+
+  // header-main menu
+
+  &__menu {
+    padding: func.calcRem(22px) 0 func.calcRem(28px) 0;
+    background-color: rgba(1, 1, 1, 0.76);
+  }
+
+  &__link-list {
+    @include flex-center;
+    gap: func.calcRem(32px);
+
+    @include laptop {
+      gap: func.calcRem(28px);
+    }
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__menu-btn {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+  }
+
+  &__link-item {
+    a {
+      font: {
+        weight: 700;
+        size: func.calcRem(18px);
+      }
+      line-height: 120%;
+      color: $white;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        text-decoration: underline;
+        color: $accent;
+      }
+
+      @include laptop {
+        font-size: func.calcRem(16px);
+      }
+    }
+
+    &.active {
+      a {
+        text-decoration: underline;
+        color: $accent;
+      }
+    }
+  }
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: func.calcRem(160px);
+  padding-bottom: func.calcRem(36px);
+
+  min-height: 100vh;
+
+  background:
+    linear-gradient(rgba($dark, 0.64), rgba($dark, 0.64)),
+    url("../assets/images/bg/hero-bg.png") center / cover no-repeat;
+
+  &__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__content {
+    margin: auto 0;
+    @include flex-center;
+    flex-direction: column;
+    gap: func.calcRem(8px);
+    color: $white;
+  }
+
+  &__text {
+    font: {
+      weight: 300;
+      size: func.calcRem(30px);
+    }
+    line-height: 150%;
+    text-transform: uppercase;
+
+    @include laptop {
+      font-size: func.calcRem(24px);
+      line-height: 120%;
+    }
+
+    @include mobile {
+      font-size: func.calcRem(17px);
+    }
+  }
+
+  &__title {
+    font: {
+      weight: 600;
+      size: func.calcRem(56px);
+    }
+    line-height: 150%;
+    text-transform: uppercase;
+    color: $accent;
+
+    @include laptop {
+      font-size: func.calcRem(50px);
+    }
+    @include mobile {
+      font-size: func.calcRem(25px);
+    }
+  }
+
+  &__description {
+    font: {
+      weight: 400;
+      size: func.calcRem(20px);
+    }
+    text-align: center;
+    line-height: 120%;
+
+    @include laptop {
+      font-size: func.calcRem(18px);
+    }
+    @include mobile {
+      font-size: func.calcRem(16px);
+      line-height: 150%;
+    }
+  }
+
+  &__btn {
+    margin-top: func.calcRem(40px);
+  }
+
+  &__slider-controls {
+    @include flex-center;
+    justify-content: space-between;
+    margin-top: func.calcRem(32px);
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__pagination-list {
+    display: flex;
+    align-items: flex-end;
+    gap: func.calcRem(8px);
+  }
+
+  &__pagination-btn {
+    width: func.calcRem(4px);
+    height: func.calcRem(24px);
+    background: $gray-light;
+
+    &.active {
+      height: func.calcRem(40px);
+      background: $accent;
+    }
+  }
+
+  &__navigation {
+    @include flex-center;
+    gap: func.calcRem(8px);
+  }
+
+  &__navigation-line {
+    &::after {
+      content: "";
+      display: block;
+      width: func.calcRem(32px);
+      height: func.calcRem(2px);
+      background-color: $gray-light;
+      rotate: -64deg;
+    }
+  }
+}
+
+.services {
+  background: $bg-section;
+
+  &__container {
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &__list {
+    width: 100%;
+    max-width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(func.calcRem(250px), 1fr));
+    gap: func.calcRem(24px);
+    margin-bottom: func.calcRem(48px);
+
+    @include tablet {
+      grid-template-columns: repeat(2, minmax(func.calcRem(250px), 1fr));
+    }
+
+    @include mobile {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: func.calcRem(260px);
+
+      overflow-y: hidden;
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      margin-bottom: func.calcRem(30px);
+    }
+  }
+
+  &__card {
+    position: relative;
+    padding: func.calcRem(50px) func.calcRem(32px) func.calcRem(21px)
+      func.calcRem(32px);
+    background-color: $white;
+    color: $dark;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+
+    @include mobile {
+      padding: func.calcRem(24px) func.calcRem(16px) func.calcRem(32px);
+    }
+
+    &:hover {
+      background-color: $accent;
+      color: $white;
+
+      .services__card-icon {
+        color: $white;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+
+        border-left: 1px solid $white;
+        border-top: 1px solid $white;
+
+        width: func.calcRem(35px);
+        height: func.calcRem(35px);
+
+        left: func.calcRem(25px);
+        top: func.calcRem(25px);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+
+        border-left: 1px solid $white;
+        border-bottom: 1px solid $white;
+
+        width: func.calcRem(35px);
+        height: func.calcRem(35px);
+
+        left: func.calcRem(25px);
+        bottom: func.calcRem(25px);
+      }
+
+      // знаю, это плохо, но я хз как ещё это сделать
+      .services__card-line {
+        &::before {
+          content: "";
+          position: absolute;
+          display: block;
+
+          border-right: 1px solid $white;
+          border-bottom: 1px solid $white;
+
+          width: func.calcRem(35px);
+          height: func.calcRem(35px);
+
+          bottom: func.calcRem(25px);
+          right: func.calcRem(25px);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          display: block;
+
+          border-top: 1px solid $white;
+          border-right: 1px solid $white;
+
+          width: func.calcRem(35px);
+          height: func.calcRem(35px);
+
+          top: func.calcRem(25px);
+          right: func.calcRem(25px);
+        }
+      }
+    }
+  }
+
+  &__card-content {
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &__card-icon {
+    margin-bottom: func.calcRem(15px);
+    color: $accent;
+  }
+
+  &__card-title {
+    font: {
+      weight: 800;
+      size: func.calcRem(20px);
+    }
+    line-height: 150%;
+    text-align: center;
+    margin-bottom: func.calcRem(10px);
+  }
+
+  &__card-description {
+    font: {
+      weight: 400;
+      size: func.calcRem(14px);
+    }
+    text-align: center;
+    margin-bottom: func.calcRem(17px);
+
+    @include mobile {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+.about-company {
+  color: $dark;
+
+  &__grid {
+    display: flex;
+    gap: func.calcRem(37px);
+
+    justify-content: space-between;
+  }
+
+  &__title {
+    font: {
+      weight: 800;
+      size: func.calcRem(28px);
+    }
+    line-height: 150%;
+    text-transform: uppercase;
+
+    margin-bottom: func.calcRem(37px);
+
+    & span {
+      font-weight: 900;
+      color: $accent;
+    }
+
+    &.line {
+      &::after {
+        content: "";
+        display: block;
+        position: relative;
+        top: func.calcRem(10px);
+
+        width: func.calcRem(50px);
+        height: func.calcRem(3px);
+        background: $accent;
+      }
+    }
+
+    @include tablet {
+      font-size: func.calcRem(24px);
+    }
+  }
+
+  &__description {
+    font: {
+      weight: 400;
+      size: func.calcRem(16px);
+    }
+    line-height: 150%;
+
+    margin-bottom: func.calcRem(32px);
+    @include tablet {
+      font-size: func.calcRem(16px);
+      margin-bottom: func.calcRem(36px);
+    }
+  }
+
+  &__active-btns {
+    @include flex-center;
+    gap: func.calcRem(24px);
+
+    @include mobile-sm {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    max-height: func.calcRem(359px);
+
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.employees {
+  background: $bg-section;
+  color: $dark;
+
+  &__list {
+    display: grid;
+    gap: func.calcRem(24px);
+    grid-template-columns: repeat(4, 1fr);
+
+    @include tablet {
+      width: 100%;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: func.calcRem(300px);
+
+      overflow-y: hidden;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+  }
+
+  &__person-inner {
+    background: $white;
+    box-shadow: 2px 2px 12px 0 rgba(33, 33, 33, 0.12);
+  }
+
+  &__person-card {
+    &:hover {
+      .employees__person-inner {
+        transform: rotateY(-180deg);
+      }
+    }
+  }
+
+  &__person-front {
+    backface-visibility: hidden;
+  }
+
+  &__person-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+
+    @include flex-center;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+
+    padding: func.calcRem(20px);
+    // transform: rotateY(180deg);
+    backface-visibility: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      border-left: 1px solid $accent;
+      border-top: 1px solid $accent;
+
+      width: func.calcRem(25px);
+      height: func.calcRem(25px);
+
+      left: func.calcRem(20px);
+      top: func.calcRem(20px);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+
+      border-left: 1px solid $accent;
+      border-bottom: 1px solid $accent;
+
+      width: func.calcRem(25px);
+      height: func.calcRem(25px);
+
+      left: func.calcRem(20px);
+      bottom: func.calcRem(20px);
+    }
+  }
+
+  &__person-inner {
+    padding-bottom: func.calcRem(24px);
+    cursor: pointer;
+
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+
+    .employees__person-line {
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+
+        border-right: 1px solid $accent;
+        border-bottom: 1px solid $accent;
+
+        width: func.calcRem(25px);
+        height: func.calcRem(25px);
+
+        bottom: func.calcRem(20px);
+        right: func.calcRem(20px);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+
+        border-top: 1px solid $accent;
+        border-right: 1px solid $accent;
+
+        width: func.calcRem(25px);
+        height: func.calcRem(25px);
+
+        top: func.calcRem(20px);
+        right: func.calcRem(20px);
+      }
+    }
+  }
+
+  &__person-about {
+    margin: func.calcRem(40px) 0 func.calcRem(40px);
+  }
+
+  &__person-description {
+    font: {
+      weight: 300;
+      size: func.calcRem(14px);
+    }
+    line-height: 120%;
+    text-align: center;
+  }
+
+  &__person-experience {
+    font: {
+      weight: 600;
+      size: func.calcRem(16px);
+    }
+    line-height: 120%;
+
+    text-align: center;
+  }
+
+  &__person-photo {
+    margin-bottom: func.calcRem(24px);
+  }
+
+  &__person-info {
+    @include flex-center;
+    flex-direction: column;
+    gap: func.calcRem(10px);
+  }
+
+  &__person-name {
+    font: {
+      weight: 700;
+      size: func.calcRem(16px);
+    }
+    line-height: 120%;
+    text-align: center;
+  }
+
+  &__person-position {
+    font: {
+      weight: 300;
+      size: func.calcRem(14px);
+    }
+    text-transform: lowercase;
+    line-height: 120%;
+    text-align: center;
+  }
+}
+
+.reviews {
+  background: url("../assets/images/bg/reviews-bg.jpg") center / cover no-repeat;
+  color: $dark;
+
+  &__header {
+    @include flex-center;
+    flex-direction: row;
+    gap: 0;
+    margin-bottom: func.calcRem(58px);
+    justify-content: space-between;
+
+    @include tablet {
+      margin-bottom: func.calcRem(48px);
+    }
+  }
+
+  &__header-pagination {
+    @include flex-center;
+    gap: func.calcRem(8px);
+
+    @include mobile-sm {
+      display: none;
+    }
+  }
+
+  &__header-line {
+    &::after {
+      content: "";
+      display: block;
+      width: func.calcRem(32px);
+      height: func.calcRem(2px);
+      background-color: $accent;
+      rotate: -64deg;
+    }
+  }
+
+  &__title {
+    font: {
+      weight: 800;
+      size: func.calcRem(28px);
+    }
+    line-height: 150%;
+    text-transform: uppercase;
+
+    &.line {
+      &::after {
+        content: "";
+        position: relative;
+        display: block;
+
+        top: func.calcRem(10px);
+
+        width: func.calcRem(50px);
+        height: func.calcRem(3px);
+        background: $accent;
+      }
+    }
+
+    @include tablet {
+      font-size: func.calcRem(24px);
+    }
+
+    @include mobile-sm {
+      font-size: func.calcRem(20px);
+    }
+  }
+
+  &__list {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    @include flex-center;
+
+    gap: func.calcRem(24px);
+    z-index: 10;
+
+    margin-bottom: func.calcRem(32px);
+
+    @include tablet {
+      margin-bottom: func.calcRem(36px);
+    }
+  }
+
+  &__card {
+    width: func.calcRem(648px);
+    flex-shrink: 0;
+    padding: func.calcRem(32px);
+    box-shadow: 2px 2px 10px 0 rgba(33, 33, 33, 0.15);
+    background: $white;
+
+    @include tablet {
+      width: func.calcRem(576px);
+    }
+
+    @include mobile-sm {
+      width: func.calcRem(300px);
+      padding: func.calcRem(24px);
+    }
+  }
+
+  &__card-header {
+    position: relative;
+
+    @include flex-center;
+    gap: func.calcRem(24px);
+    margin-bottom: func.calcRem(16px);
+
+    @include mobile-sm {
+      gap: func.calcRem(16px);
+    }
+  }
+
+  &__card-avatar {
+    border-radius: func.calcRem(50px);
+
+    @include mobile-sm {
+      width: func.calcRem(50px);
+      height: func.calcRem(50px);
+    }
+  }
+
+  &__card-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    user-select: none;
+    pointer-events: none;
+
+    @include mobile-sm {
+      display: none;
+    }
+  }
+
+  &__card-author {
+    display: flex;
+    gap: func.calcRem(4px);
+    flex-direction: column;
+  }
+
+  &__card-position {
+    font: {
+      weight: 300;
+      size: func.calcRem(14px);
+    }
+    line-height: 120%;
+  }
+
+  &__card-username {
+    font: {
+      weight: 700;
+      size: func.calcRem(20px);
+    }
+    line-height: 150%;
+
+    @include mobile-sm {
+      font-size: func.calcRem(14px);
+    }
+  }
+
+  &__description {
+    font: {
+      weight: 400;
+      size: func.calcRem(14px);
+    }
+
+    line-height: 150%;
+  }
+
+  &__active-btns {
+    @include flex-center;
+    gap: func.calcRem(24px);
+
+    @include mobile-sm {
+      flex-direction: column;
+      gap: func.calcRem(16px);
+    }
+  }
+}
+
+.articles {
+  &__container {
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &__list {
+    display: grid;
+    gap: func.calcRem(24px);
+    grid-template-columns: repeat(3, 1fr);
+
+    margin-bottom: func.calcRem(48px);
+
+    @include tablet {
+      width: 100%;
+      overflow-y: hidden;
+      overflow-x: auto;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: func.calcRem(336px);
+
+      scrollbar-width: none;
+    }
+
+    @include mobile-sm {
+      grid-auto-columns: func.calcRem(250px);
+    }
+  }
+
+  &__card {
+    color: $dark;
+  }
+
+  &__card-link {
+    color: inherit;
+    &:hover {
+      .articles__card-preview-icon {
+        opacity: 1;
+      }
+
+      .articles__card-title {
+        color: $accent;
+      }
+
+      .articles__card-preview,
+      .articles__card-preview-line {
+        &::before,
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__card-preview {
+    position: relative;
+    margin-bottom: func.calcRem(24px);
+
+    &::before,
+    &::after {
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+
+      top: func.calcRem(20px);
+      left: func.calcRem(20px);
+
+      border-left: 1px solid $white;
+      border-top: 1px solid $white;
+      width: func.calcRem(35px);
+      height: func.calcRem(35px);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      bottom: func.calcRem(20px);
+      left: func.calcRem(20px);
+
+      border-left: 1px solid $white;
+      border-bottom: 1px solid $white;
+      width: func.calcRem(35px);
+      height: func.calcRem(35px);
+    }
+
+    @include mobile-sm {
+      margin-bottom: func.calcRem(16px);
+    }
+  }
+
+  &__card-preview-icon {
+    position: absolute;
+    opacity: 0;
+
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+
+    padding: func.calcRem(10px);
+    background-color: $white;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &__card-preview-line {
+    &::before,
+    &::after {
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+
+      top: func.calcRem(20px);
+      right: func.calcRem(20px);
+
+      border-right: 1px solid $white;
+      border-top: 1px solid $white;
+      width: func.calcRem(35px);
+      height: func.calcRem(35px);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+
+      bottom: func.calcRem(20px);
+      right: func.calcRem(20px);
+
+      border-right: 1px solid $white;
+      border-bottom: 1px solid $white;
+      width: func.calcRem(35px);
+      height: func.calcRem(35px);
+    }
+  }
+
+  &__card-title {
+    margin-bottom: func.calcRem(16px);
+    font: {
+      weight: 700;
+      size: func.calcRem(16px);
+    }
+    line-height: 150%;
+    transition: all 0.2s ease-in-out;
+
+    @include mobile-sm {
+      font-size: func.calcRem(14px);
+    }
+  }
+
+  &__card-time {
+    display: flex;
+    align-items: center;
+    gap: func.calcRem(16px);
+
+    font: {
+      weight: 300;
+      size: func.calcRem(12px);
+    }
+    line-height: 120%;
+
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: $light;
+    }
+  }
+
+  &__card-text {
+    margin-top: func.calcRem(16px);
+
+    font: {
+      weight: 400;
+      size: func.calcRem(14px);
+    }
+    line-height: 120%;
+  }
+}
+
+.footer {
+  background-color: $dark;
+  color: $white;
+
+  &__content {
+    padding: func.calcRem(80px) 0;
+
+    @include tablet {
+      padding: func.calcRem(60px) 0;
+    }
+    @include mobile-sm {
+      padding: func.calcRem(40px) 0;
+    }
+  }
+
+  &__top {
+    @include flex-center;
+    justify-content: space-between;
+    padding-bottom: func.calcRem(48px);
+
+    border-bottom: 1px solid rgb(248, 245, 244, 0.2);
+    margin-bottom: func.calcRem(48px);
+
+    @include mobile-sm {
+      justify-content: center;
+
+      padding-bottom: func.calcRem(24px);
+    }
+  }
+
+  &__top-text {
+    width: 100%;
+    max-width: func.calcRem(862px);
+    font: {
+      size: func.calcRem(16px);
+      weight: 400;
+    }
+    line-height: 120%;
+
+    text-transform: lowercase;
+    color: $light;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__main {
+    @include flex-center;
+    justify-content: space-between;
+    // margin-bottom: func.calcRem(80px);
+
+    @include mobile {
+      align-items: flex-start;
+      gap: func.calcRem(40px);
+      flex-direction: column;
+    }
+  }
+
+  &__contacts-list {
+    display: flex;
+    align-items: start;
+    gap: func.calcRem(24px);
+    flex-direction: column;
+  }
+
+  &__contacts-item {
+    @include flex-center;
+    gap: func.calcRem(24px);
+  }
+
+  &__contacts-icon {
+    background: $dark-surface;
+    padding: func.calcRem(12px) func.calcRem(11px) func.calcRem(11px);
+    @include tablet {
+      padding: func.calcRem(11px) func.calcRem(11px) func.calcRem(10px);
+    }
+  }
+
+  &__contacts-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__contacts-label {
+    font: {
+      weight: 700;
+      size: func.calcRem(12px);
+    }
+    line-height: 120%;
+    text-transform: uppercase;
+    color: $gray;
+  }
+
+  &__contacts-value {
+    font: {
+      weight: 700;
+      size: func.calcRem(16px);
+    }
+    line-height: 150%;
+    color: $white;
+
+    @include tablet {
+      font-size: func.calcRem(14px);
+    }
+  }
+
+  &__nav {
+    width: 100%;
+    max-width: func.calcRem(312px);
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__link-list {
+    display: flex;
+    gap: func.calcRem(16px);
+    flex-direction: column;
+  }
+
+  &__link {
+    font: {
+      weight: 700;
+      size: func.calcRem(14px);
+    }
+    line-height: 120%;
+    text-align: center;
+    text-transform: uppercase;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+      color: $accent;
+    }
+  }
+
+  .lawyer-card {
+    width: 100%;
+    max-width: func.calcRem(424px);
+
+    &__header {
+      @include flex-center;
+      gap: func.calcRem(24px);
+      margin-bottom: func.calcRem(16px);
+    }
+    &__avatar {
+      border-radius: func.calcRem(50px);
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: func.calcRem(4px);
+    }
+    &__name {
+      font: {
+        weight: 700;
+        size: func.calcRem(20px);
+      }
+      line-height: 150%;
+    }
+    &__position {
+      font: {
+        weight: 300;
+        size: func.calcRem(14px);
+      }
+      line-height: 120%;
+    }
+    &__text {
+      font: {
+        weight: 400;
+        size: func.calcRem(14px);
+      }
+      line-height: 150%;
+      margin-bottom: func.calcRem(24px);
+    }
+    &__btn {
+      font-size: func.calcRem(14px);
+    }
+  }
+
+  &__bottom {
+    padding: func.calcRem(16px) 0;
+    background-color: $dark-deep;
+    width: 100%;
+
+    &-grid {
+      @include flex-center;
+      justify-content: space-between;
+
+      @include mobile-sm {
+        flex-direction: column;
+        gap: func.calcRem(8px);
+      }
+    }
+
+    &-text,
+    &-link {
+      font: {
+        weight: 400;
+        size: func.calcRem(14px);
+      }
+      color: inherit;
+      line-height: 120%;
+    }
+  }
+}
